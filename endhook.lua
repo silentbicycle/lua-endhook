@@ -25,8 +25,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 local debug = debug
 
----A simple module to run a hook after the main script is read.
--- Requires the debug library.
+---Run a hook after the main script is read. Requires the debug library.
 module("endhook")
 
 
@@ -38,10 +37,13 @@ function hook(f, level)
    level = level or 4
    local info = debug.getinfo(level, "S")
    local file = info.source
-
+   
    function hook(ev, line, c)
       local info = debug.getinfo(2, "S")
-      if info.what == "main" and info.source == file then f() end
+      if info.what == "main" and info.source == file then
+         f()
+         debug.sethook()
+      end
    end
    
    debug.sethook(hook, "r")
