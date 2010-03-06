@@ -1,0 +1,5 @@
+endhook.hook sets a hook to run when a standalone Lua script has
+finished. This way, simple config scripts no longer need e.g.
+(whatever library).start() at the end.
+
+For example usage, see the test script.
